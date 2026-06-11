@@ -1,30 +1,52 @@
-const url = 'https://api.github.com/users/Eduzeraaa/repos';
+const username = 'Eduzeraaa';
+const repoContainer = document.getElementById('github-projects');
 
-fetch(url)
-.then(response => response.json())
-.then(data => {
-const container = document.getElementById('github-projects');
-container.innerHTML = '';
+async function fetchRepositories() {
+    try {
+        // Buscando TODOS os repositórios públicos do seu perfil
+        const response = await fetch(`https://api.github.com/users/${username}/repos`);
+        
+        if (!response.ok) {
+            throw new Error(`Erro na API do GitHub: Status ${response.status}`);
+        }
 
-data.forEach(repo => {
-  if (repo.name === 'Assistente-Financeiro-Pessoal' || repo.name === 'projeto-agendador' || repo.name === 'malware-detection-tool' || repo.name === 'fifa-recommendation-system') {
-    const card = document.createElement('div');
-    card.style.background = '#1e293b';
-    card.style.padding = '20px';
-    card.style.marginBottom = '15px';
-    card.style.borderRadius = '8px';
-    
-    const nomeFormatado = repo.name.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-    
-    card.innerHTML = `
-      <h3 style="color: #38bdf8; margin-top: 0;">${nomeFormatado}</h3>
-      <p style="color: #94a3b8;">${repo.description || 'Sem descrição disponível.'}</p>
-      <a href="${repo.html_url}" target="_blank" style="color: #38bdf8; text-decoration: none; font-weight: bold;">🔗 Ver projeto</a>
-    `;
-    container.appendChild(card);
-  }
-});
-})
-.catch(error => {
-console.error('Erro ao carregar projetos:', error);
-});
+        const repositories = await response.json();
+        
+        // Limpa a mensagem de carregamento
+        repoContainer.innerHTML = '';
+
+        // Lista exata dos repositórios que você quer exibir no portfólio
+        const projetosAlvo = ['IA_Generativa', 'Automacao_Python', 'Analise_Dados', 'portfolio_HUB']; 
+        
+        // Filtra os repositórios reais que vieram da API
+        const projetosFiltrados = repositories.filter(repo => 
+            projetosAlvo.some(alvo => repo.name.toLowerCase() === alvo.toLowerCase())
+        );
+
+        if (projetosFiltrados.length === 0) {
+            repoContainer.innerHTML = '<p style="color: #94a3b8;">Nenhum dos 4 repositórios alvo foi encontrado no seu GitHub. Verifique os nomes.</p>';
+            return;
+        }
+
+        // Desenha os cards na tela
+        projetosFiltrados.forEach(repo => {
+            const nomeFormatado = repo.name.replace(/_/g, ' ');
+            
+            const card = document.createElement('div');
+            card.className = 'card'; // Usa a mesma classe CSS que já está estilizada no seu HTML
+            card.innerHTML = `
+                <h3>${nomeFormatado}</h3>
+                <p>${repo.description || 'Sem descrição disponível no GitHub.'}</p>
+                <p class="tech">⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count} | Linguagem: ${repo.language || 'Python'}</p>
+                <a href="${repo.html_url}" target="_blank" style="margin-top: 10px; display: inline-block;">Ver Projeto →</a>
+            `;
+            repoContainer.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error('Erro detalhado:', error);
+        repoContainer.innerHTML = `<p style="color: #ef4444;">Não foi possível carregar os projetos no momento. (Motivo: ${error.message})</p>`;
+    }
+}
+
+fetchRepositories();
