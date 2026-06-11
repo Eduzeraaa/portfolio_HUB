@@ -1,52 +1,55 @@
-const username = 'Eduzeraaa';
 const repoContainer = document.getElementById('github-projects');
 
-async function fetchRepositories() {
-    try {
-        // Buscando TODOS os repositórios públicos do seu perfil
-        const response = await fetch(`https://api.github.com/users/${username}/repos`);
-        
-        if (!response.ok) {
-            throw new Error(`Erro na API do GitHub: Status ${response.status}`);
-        }
+const meusProjetos = [
+    {
+        name: 'Assistente Financeiro Pessoal',
+        description: 'Agente financeiro inteligente em Python, LangChain e MCP. Interpreta linguagem natural para registrar transações, consultar saldos e simular compras com persistência no MongoDB.',
+        html_url: 'https://github.com/Eduzeraaa/Assistente-Financeiro-Pessoal',
+        language: 'Python'
+    },
+    {
+        name: 'Projeto Agendador',
+        description: 'Sistema full-stack em Streamlit que automatiza agendamentos via chat por linguagem natural, integrando a LLM Groq, Google Calendar API e banco de dados MongoDB.',
+        html_url: 'https://github.com/Eduzeraaa/projeto-agendador',
+        language: 'Python'
+    },
+    {
+        name: 'Malware Detection Tool',
+        description: 'Ferramenta de análise de arquivos que integra a API do VirusTotal com Inteligência Artificial para identificar ameaças e traduzir relatórios técnicos em explicações simples.',
+        html_url: 'https://github.com/Eduzeraaa/malware-detection-tool',
+        language: 'Python'
+    },
+    {
+        name: 'Fifa Recommendation System',
+        description: 'Dashboard e chatbot inteligente que analisa dados do FIFA 23 com Pandas para recomendar contratações de jogadores baseadas em orçamento, posição e potencial.',
+        html_url: 'https://github.com/Eduzeraaa/fifa-recommendation-system',
+        language: 'Python'
+    },
+];
 
-        const repositories = await response.json();
-        
-        // Limpa a mensagem de carregamento
+function renderizarProjetos() {
+    try {
+
         repoContainer.innerHTML = '';
 
-        // Lista exata dos repositórios que você quer exibir no portfólio
-        const projetosAlvo = ['IA_Generativa', 'Automacao_Python', 'Analise_Dados', 'portfolio_HUB']; 
-        
-        // Filtra os repositórios reais que vieram da API
-        const projetosFiltrados = repositories.filter(repo => 
-            projetosAlvo.some(alvo => repo.name.toLowerCase() === alvo.toLowerCase())
-        );
-
-        if (projetosFiltrados.length === 0) {
-            repoContainer.innerHTML = '<p style="color: #94a3b8;">Nenhum dos 4 repositórios alvo foi encontrado no seu GitHub. Verifique os nomes.</p>';
-            return;
-        }
-
-        // Desenha os cards na tela
-        projetosFiltrados.forEach(repo => {
+        meusProjetos.forEach(repo => {
             const nomeFormatado = repo.name.replace(/_/g, ' ');
             
             const card = document.createElement('div');
-            card.className = 'card'; // Usa a mesma classe CSS que já está estilizada no seu HTML
+            card.className = 'card'; 
             card.innerHTML = `
                 <h3>${nomeFormatado}</h3>
-                <p>${repo.description || 'Sem descrição disponível no GitHub.'}</p>
-                <p class="tech">⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count} | Linguagem: ${repo.language || 'Python'}</p>
+                <p>${repo.description}</p>
+                <p class="tech">⚡ Projeto Ativo | Linguagem: ${repo.language}</p>
                 <a href="${repo.html_url}" target="_blank" style="margin-top: 10px; display: inline-block;">Ver Projeto →</a>
             `;
             repoContainer.appendChild(card);
         });
 
     } catch (error) {
-        console.error('Erro detalhado:', error);
-        repoContainer.innerHTML = `<p style="color: #ef4444;">Não foi possível carregar os projetos no momento. (Motivo: ${error.message})</p>`;
+        console.error('Erro ao renderizar:', error);
+        repoContainer.innerHTML = '<p style="color: #ef4444;">Erro ao carregar os cards dos projetos.</p>';
     }
 }
 
-fetchRepositories();
+renderizarProjetos();
