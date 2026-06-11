@@ -99,12 +99,12 @@
     }
 
     .foto {
-  width: 140%;
-  height: 140%;
-  object-fit: cover;
-  object-position: center center;
-  transform: translate(-10%, -10%);
-}
+      width: 140%;
+      height: 140%;
+      object-fit: cover;
+      object-position: center center;
+      transform: translate(-10%, -10%);
+    }
 
     .footer {
       margin-top: 40px;
@@ -112,49 +112,45 @@
       color: #94a3b8;
     }
 
-
-
     .recomendacoes {
-  position: relative;
-  width: 100%;
-  height: 60px;
-  overflow: hidden;
-}
+      position: relative;
+      width: 100%;
+      height: 60px;
+      overflow: hidden;
+    }
 
-.recomendacoes p {
-  position: absolute;
-  width: 100%;
-  opacity: 0;
-  animation: slideX 9s infinite;
-}
+    .recomendacoes p {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      animation: slideX 9s infinite;
+    }
 
-.recomendacoes p:nth-child(1) { animation-delay: 0s; }
-.recomendacoes p:nth-child(2) { animation-delay: 3s; }
-.recomendacoes p:nth-child(3) { animation-delay: 6s; }
+    .recomendacoes p:nth-child(1) { animation-delay: 0s; }
+    .recomendacoes p:nth-child(2) { animation-delay: 3s; }
+    .recomendacoes p:nth-child(3) { animation-delay: 6s; }
 
-@keyframes slideX {
-  0% {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  10% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  30% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  40% {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-    
+    @keyframes slideX {
+      0% {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      10% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      30% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      40% {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+      100% {
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 
@@ -180,14 +176,12 @@
     </p>
 
     <h2>Currículo</h2>
-
     <ul>
       <li><strong>Formação:</strong> Engenharia de Software (em andamento)</li>
-      <li><strong>Experiência:</strong> Desenvolvimento de projetos acadêmicos utilizando Python, APIs e banco de dados MongoDB</li>
-      <li><strong>Habilidades Técnicas:</strong> Python, Git, GitHub, MongoDB, Streamlit, LangChain</li>
+      <li><strong>Experiência:</strong> Desenvolvimento de projetos acadêmicos utilizando Python, APIs e banco de dados MongoDB</li>
+      <li><strong>Habilidades Técnicas:</strong> Python, Git, GitHub, MongoDB, Streamlit, LangChain</li>
       <li><strong>Habilidades Pessoais:</strong> Pensamento lógico, resolução de problemas, aprendizado rápido</li>
       <li><strong>Idiomas:</strong> Português (nativo), Inglês (C1 - Proficiência Eficaz)</li>
-
       <li><strong>Certificações:</strong>
         <ul>
           <li>CRUD Operations in MongoDB — MongoDB</li>
@@ -201,58 +195,42 @@
     </ul>
 
     <h2>Projetos</h2>
-
-    <div class="card">
-      <strong>Agendador de Horários</strong><br>
-      <span class="tech">Python, LangChain, Streamlit, MongoDB</span><br><br>
-      Aplicação que automatiza a criação de eventos a partir de linguagem natural. 
-      O usuário envia uma solicitação em texto, que é interpretada por um modelo de linguagem (LLM), 
-      responsável por extrair as informações e gerar o agendamento diretamente no Google Calendar.
-      <br><br>
-      <a href="https://github.com/Eduzeraaa/projeto-agendador" target="_blank">🔗 Ver projeto</a>
-    </div>
-    
-    <div class="card">
-      <strong>Malware Detection Tool</strong><br>
-      <span class="tech">Python, LangChain, Streamlit, VirusTotal API</span><br><br>
-      Aplicação que realiza a análise de arquivos utilizando integração com o VirusTotal e Inteligência Artificial.
-      O usuário envia um arquivo, que é analisado pela API, enquanto um modelo de linguagem (LLM) interpreta os 
-      dados retornados, explicando de forma simples se o arquivo é seguro, suspeito ou malicioso.
-      <br><br>
-      <a href="https://github.com/Eduzeraaa/malware-detection-tool" target="_blank">🔗 Ver projeto</a>
+    <!-- Este contêiner será preenchido dinamicamente pelo script JS consumindo a API do GitHub -->
+    <div id="github-projects">
+      <p style="color: #94a3b8;">Carregando projetos integrados do GitHub...</p>
     </div>
 
     <h2>Habilidades</h2>
-
     <table>
       <tr>
-    <td><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="40"/></td>
-    <td>Python — criar programas, automatizar tarefas e desenvolver a lógica do sistema</td>
-  </tr>
-  <tr>
-    <td><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/streamlit-icon.png" width="40"/></td>
-    <td>Streamlit — framework para criar aplicativos web de forma rápida e visual</td>
-  </tr>
-  <tr>
-    <td><img src='https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/langchain.png' width="40"/></td>
-    <td>LangChain — framework para criar apps inteligentes com modelos de linguagem</td>
-  </tr>
-  <tr>
-    <td><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" width="40"></td>
-    <td>MongoDB — manipulação de banco de dados NoSQL com operações CRUD</td>
-  </tr>
+        <td><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" width="50"/></td>
+        <td>Python — criar programas, automatizar tarefas e desenvolver a lógica do sistema</td>
+      </tr>
+      <tr>
+        <td><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/streamlit-icon.png" width="50"/></td>
+        <td>Streamlit — framework para criar aplicativos web de forma rápida e visual</td>
+      </tr>
+      <tr>
+        <td><img src='https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/langchain.png' width="50"/></td>
+        <td>LangChain — framework para criar apps inteligentes com modelos de linguagem</td>
+      </tr>
+      <tr>
+        <td><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" width="50"></td>
+        <td>MongoDB — manipulação de banco de dados NoSQL com operações CRUD</td>
+      </tr>
+      <tr>
+        <td><img src="https://devicons.io/devicons/icons/pandas-icon.svg" width="40"></td>
+        <td>Pandas — Manipulação e análise de dados</td>
+      </tr>
     </table>
 
-
     <h2>Recomendações</h2>
-
     <div class="recomendacoes">
       <p>"Eduardo demonstra dedicação e aprende rapidamente novos conceitos."</p>
       <p>"Possui boa lógica e se destaca na resolução de problemas."</p>
       <p>"Sempre busca evoluir e aplicar o que aprende na prática."</p>
     </div>
 
-    
     <h2>Contato</h2>
     <ul>
       <li>📧 <a href="mailto:eduardoluisbsb2@email.com">Email</a></li>
@@ -260,13 +238,11 @@
       <li>🔗 <a href="https://www.linkedin.com/in/eduardo-luiss/" target="_blank">LinkedIn</a></li>
     </ul>
 
-
     <h2>Apresentação</h2>
     <p>
       🎨 <a href="https://canva.link/34j3o8v14rt4nmd" target="_blank">Visualizar no Canva</a>
     </p>
         
-
     <div class="footer">
       <p>
         Este portfólio foi desenvolvido com apoio de ferramentas de Inteligência Artificial para organização, revisão e aprimoramento do conteúdo, conforme diretrizes institucionais.
@@ -274,5 +250,8 @@
     </div>
 
   </div>
+
+  <!-- Vinculando o arquivo de integração dinâmica -->
+  <script src="script.js"></script>
 </body>
 </html>
